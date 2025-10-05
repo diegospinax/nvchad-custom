@@ -47,16 +47,15 @@ function M:setup()
     -- 💀
     -- This is the default if not provided, you can remove it. Or adjust as needed.
     -- One dedicated LSP server & client will be started per unique root_dir
-    root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew" },
+    root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),
 
     -- ... (parte de la configuración de jdtls)
     on_attach = function(client, bufnr)
       -- Llama a la función on_attach original de NvChad para mantener sus atajos
       require("nvchad.configs.lspconfig").on_attach(client, bufnr)
-
       -- NUESTRO ATAJO: Organizar Imports con Ctrl + o
       vim.keymap.set("n", "<C-o>", function()
-        vim.lsp.buf.code_action { context = { only = { "source.organizeImports" } }, apply = true }
+        vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
       end, { buffer = bufnr, desc = "LSP: Organize Imports" })
     end,
     -- ... (resto de la configuración)
