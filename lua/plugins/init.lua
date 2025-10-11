@@ -2,15 +2,20 @@ return {
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
+    opts = require("configs.conform"),
   },
 
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "configs.lspconfig"
+      require("configs.lspconfig")
     end,
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = require("configs.nvim-tree"),
   },
 
   {
@@ -19,11 +24,11 @@ return {
     -- lazy = false, -- This plugin is already lazy,
     ft = "rust",
     config = function()
-      local codelldb = vim.fn.expand "$HOME/.local/share/nvim/mason/packages/codelldb"
+      local codelldb = vim.fn.expand("$HOME/.local/share/nvim/mason/packages/codelldb")
       local extension_path = codelldb .. "/extension/"
       local codelldb_path = extension_path .. "adapter/codelldb"
       local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-      local cfg = require "rustaceanvim.config"
+      local cfg = require("rustaceanvim.config")
 
       vim.g.rustaceanvim = {
         dap = {
@@ -45,23 +50,23 @@ return {
     "saecki/crates.nvim",
     ft = { "toml" },
     config = function()
-      require("crates").setup {
+      require("crates").setup({
         completion = {
           cmp = {
             enabled = true,
           },
         },
-      }
-      require("cmp").setup.buffer {
+      })
+      require("cmp").setup.buffer({
         sources = { { name = "crates" } },
-      }
+      })
     end,
   },
 
   {
     "mfussenegger/nvim-dap",
     config = function()
-      local dap, dapui = require "dap", require "dapui"
+      local dap, dapui = require("dap"), require("dapui")
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
