@@ -1,10 +1,7 @@
 local options = {
-  renderer = {
-    group_empty = true,
-  },
   git = {
-    ignore = false
-  }
+    ignore = false,
+  },
 }
 
 return options
